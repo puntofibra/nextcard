@@ -28,7 +28,7 @@ var NC = (function () {
     { id: 'emp', nom: 'Pulso EMP', rar: 'c', coste: 2, tipo: 'hechizo', arena: 1, radioArea: 2.6, dmg: 85, torre: 0.4, aturde: 0.8,
       desc: 'Descarga electromagnética instantánea: daña y deja paralizado todo lo que toca.' },
     { id: 'dragon', nom: 'Dragón Estelar', rar: 'e', coste: 4, tipo: 'tropa', arena: 1, num: 1, vuela: 1, hp: 820, dmg: 115, hit: 1.6, rango: 3.5, vel: 1.4, obj: 'todo', radio: 0.85, area: 1.3,
-      desc: 'Bestia mecánica voladora que escupe fuego de plasma en área. Reina de los enjambres.' },
+      img: 'img/tropa-dragon.webp', desc: 'Bestia mecánica voladora que escupe fuego de plasma en área. Reina de los enjambres.' },
     { id: 'superlucas', nom: 'Súper Lucas', rar: 'l', coste: 5, tipo: 'tropa', arena: 1, num: 1, vuela: 1, hp: 1150, dmg: 210, hit: 1.0, rango: 1.4, vel: 2.0, obj: 'todo', radio: 0.85, carga: 1,
       img: 'img/lucas/superlucas.webp', desc: 'La mascota de FuturMovil con su capa. Vuela a velocidad supersónica y su primer golpe hace daño doble.' },
     { id: 'agujero', nom: 'Agujero Negro', rar: 'e', coste: 3, tipo: 'hechizo', arena: 2, radioArea: 3.0, dmg: 65, torre: 0.3, dura: 4, atrae: 1,
