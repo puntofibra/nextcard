@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<title>NEXTCARD</title>
+<meta name="description" content="NEXTCARD · batallas de cartas en el espacio con Lucas, el robot de FuturMovil">
+<meta name="theme-color" content="#050a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NEXTCARD">
+<meta property="og:title" content="NEXTCARD">
+<meta property="og:description" content="Batallas de cartas en el espacio con Lucas, el robot de FuturMovil">
+<meta property="og:image" content="https://puntofibra.github.io/nextcard/img/icon-512.png">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<header id="top" class="oculto">
+  <button class="tYo" id="tYo" aria-label="Mi perfil"><span class="tNivHex"><b id="tNiv">1</b></span><span class="tYoTxt"><b id="tNom"></b><span class="tXpBar"><i id="tXp"></i></span></span><span class="tPase oculto" id="tPase">✦</span></button>
+  <div class="saldos">
+    <button class="saldo trof" id="tTrof" title="Trofeos"><svg class="ic" viewBox="0 0 24 24"><path d="M7 3h10v5a5 5 0 0 1-10 0z" fill="#ffd23f"/><path d="M7 5H3.5a3.5 3.5 0 0 0 3.8 4M17 5h3.5a3.5 3.5 0 0 1-3.8 4" fill="none" stroke="#ffd23f" stroke-width="1.8"/><path d="M10 13h4v3h-4zM7 19h10v2H7z" fill="#f0a500"/><path d="M9 16h6l1 3H8z" fill="#ffd23f"/></svg><span>0</span></button>
+    <button class="saldo cred" id="tCred" title="Créditos"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#ffc83a"/><circle cx="12" cy="12" r="7.2" fill="#f0a500" stroke="#ffe48a" stroke-width="1.2"/><path d="M14.8 9.2a3.6 3.6 0 1 0 0 5.6" fill="none" stroke="#fff7c8" stroke-width="2.2" stroke-linecap="round"/></svg><span>0</span></button>
+    <button class="saldo gem" id="tGemas" title="Gemas"><svg class="ic" viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 12L2 9z" fill="#19ff6a"/><path d="M6 3l3 6h6l3-6M2 9h20M9 9l3 12 3-12" fill="none" stroke="#063d1d" stroke-width="1.2"/><path d="M6 3l3 6H2z" fill="#a8ffcb"/></svg><span>0</span><i class="mas">+</i></button>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<nav id="nav" class="oculto">
+  <button data-v="tienda" style="--nc:#ffd23f"><span class="nIco"><svg viewBox="0 0 24 24"><path d="M4.5 11.5h15V20h-15z" class="d"/><path d="M3 9.5 4.5 4h15L21 9.5a2.5 2.5 0 0 1-4.5 1.5 2.5 2.5 0 0 1-4.5 0 2.5 2.5 0 0 1-4.5 0A2.5 2.5 0 0 1 3 9.5zM4.5 11.5V20h15v-8.5M10 20v-4.5h4V20"/></svg></span><span>Tienda</span></button>
+  <button data-v="cartas" style="--nc:#00e5ff"><span class="nIco"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="11" height="15" rx="2" class="d" transform="rotate(-8 8 12)"/><rect x="3" y="5" width="11" height="15" rx="2" transform="rotate(-8 8 12)"/><rect x="10" y="4" width="11" height="15" rx="2"/><path d="M15.5 8.5l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.3 1.3.4-2.6-1.9-1.8 2.6-.4z"/></svg></span><span>Cartas</span></button>
+  <button data-v="inicio" class="central"><span class="nIco"><svg viewBox="0 0 24 24"><path d="M14.5 17.5 3 6V3h3l11.5 11.5M13 19l6-6M16 16l4 4M19 21l2-2M9.5 17.5 21 6V3h-3L6.5 14.5M11 19l-6-6M8 16l-4 4M5 21l-2-2"/></svg></span><span>Batalla</span></button>
+  <button data-v="ranking" style="--nc:#c77dff"><span class="nIco"><svg viewBox="0 0 24 24"><path d="M7 3h10v5a5 5 0 0 1-10 0z" class="d"/><path d="M7 3h10v5a5 5 0 0 1-10 0zM7 5H3.5a3.5 3.5 0 0 0 3.8 4M17 5h3.5a3.5 3.5 0 0 1-3.8 4M12 13v4M8 21h8M9.5 17h5l.5 4h-6z"/></svg></span><span>Ranking</span></button>
+  <button data-v="guia" style="--nc:#19ff6a"><span class="nIco"><svg viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z" class="d"/><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21a2 2 0 0 1 2-2h13v2H6M9 8h6M9 11h4"/></svg></span><span>Cómo jugar</span></button>
+</nav>
+
+<div id="batalla" class="oculto"></div>
+<div id="busqueda" class="oculto"></div>
+<div id="apertura" class="oculto"></div>
+<div id="modal" class="oculto"><div class="mFondo"></div><div class="mCaja"><button class="mCerrar" aria-label="Cerrar">✕</button><div class="mCont"></div></div></div>
+<div id="toasts"></div>
+
+<script src="js/datos.js?v=1"></script>
+<script src="js/sonido.js?v=1"></script>
+<script src="js/arte.js?v=1"></script>
+<script src="js/batalla.js?v=1"></script>
+<script src="js/demo.js?v=1"></script>
+<script src="js/qrcode.min.js?v=1" defer></script>
+<script src="js/juego.js?v=1"></script>
+<script src="js/admin.js?v=1"></script>
+</body>
+</html>
