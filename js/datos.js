@@ -36,7 +36,7 @@ var NC = (function () {
     { id: 'gamer', nom: 'Lucas Gamer', rar: 'l', coste: 4, tipo: 'tropa', arena: 2, num: 1, hp: 760, dmg: 125, hit: 1.3, rango: 6.0, vel: 1.0, obj: 'todo', radio: 0.7, cadena: 2, ralentiza: 0.35,
       img: 'img/lucas/mando.webp', desc: 'Lucas con su mando hackea a los enemigos: su rayo salta a 3 objetivos y los ralentiza.' },
     { id: 'coloso', nom: 'Coloso de Plasma', rar: 'e', coste: 7, tipo: 'tropa', arena: 3, num: 1, hp: 4600, dmg: 265, hit: 2.5, rango: 1.2, vel: 0.6, obj: 'edificios', radio: 1.25, muerte: 320,
-      desc: 'Gigante de roca y plasma. Solo va a por edificios y al caer explota arrasando todo a su alrededor.' },
+      img: 'img/tropa-coloso.webp', desc: 'Gigante de roca y plasma. Solo va a por edificios y al caer explota arrasando todo a su alrededor.' },
     { id: 'comandante', nom: 'Lucas Comandante', rar: 'l', coste: 5, tipo: 'tropa', arena: 3, num: 1, hp: 1350, dmg: 145, hit: 1.2, rango: 5.0, vel: 1.0, obj: 'todo', radio: 0.75, invoca: 'cadete', cada: 6,
       img: 'img/lucas/senala.webp', desc: 'Lucas al mando: dispara rayos y cada 6 s teletransporta un cadete Ion a su lado.' }
   ];
