@@ -534,3 +534,9 @@ body[data-vista="login"] #app { top: 0; bottom: 0; padding-top: calc(14px + var(
   .inicio .cofres { grid-column: 1 / -1; }
   .cofre { aspect-ratio: 1.1; }
 }
+
+/* ---------- pantalla de actualización automática ---------- */
+.actualiza{position:fixed;inset:0;z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:rgba(3,4,13,.92);backdrop-filter:blur(6px)}
+.actualiza b{font-family:Orbitron,sans-serif;font-weight:900;letter-spacing:.2em;font-size:18px;color:#19ff6a;text-shadow:0 0 12px #19ff6a}
+.actualiza small{color:var(--tx2);font-size:13px}
+.aRueda{width:54px;height:54px;border-radius:50%;border:4px solid rgba(25,255,106,.2);border-top-color:#19ff6a;border-right-color:#00e5ff;animation:gira .8s linear infinite;box-shadow:0 0 20px rgba(25,255,106,.4)}
