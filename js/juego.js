@@ -706,7 +706,7 @@ else ir('login', true);
 setInterval(() => { if (SES && !Batalla.activa && document.visibilityState === 'visible') refrescar(); }, 90000);
 
 /* ---- actualización automática: si hay una versión nueva, se recarga sola cuando no estás en batalla ---- */
-const VERSION = 6;   // subir este número (y version.json) en cada actualización
+const VERSION = 7;   // subir este número (y version.json) en cada actualización
 let nuevaVersion = 0, actualizando = false, ultVer = 0;
 function compruebaVersion(forzar) {
   if (actualizando || (!forzar && Date.now() - ultVer < 30000)) return; ultVer = Date.now();

@@ -12,7 +12,7 @@ var NC = (function () {
     { id: 'cadetes', nom: 'Cadetes Ion', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 3, hp: 330, dmg: 82, hit: 1.1, rango: 0.8, vel: 1.0, obj: 'tierra', radio: 0.5,
       img: 'img/tropa-cadetes.webp', desc: 'Escuadrón de tres robots con porra de iones. Rodean y frenan a cualquier tropa grande.' },
     { id: 'tirador', nom: 'Tirador Láser', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 1, hp: 260, dmg: 92, hit: 1.1, rango: 5.5, vel: 1.0, obj: 'todo', radio: 0.5,
-      desc: 'Francotirador de largo alcance. Dispara a tierra y aire desde detrás de tus tanques.' },
+      img: 'img/tropa-tirador.webp', desc: 'Francotirador de largo alcance. Dispara a tierra y aire desde detrás de tus tanques.' },
     { id: 'meteoro', nom: 'Lluvia de Meteoritos', rar: 'c', coste: 2, tipo: 'hechizo', arena: 0, radioArea: 3.2, dmg: 150, torre: 0.4,
       desc: 'Una lluvia de rocas espaciales que barre enjambres y tropas débiles en una zona grande.' },
     { id: 'torreta', nom: 'Torreta Pulsar', rar: 'c', coste: 4, tipo: 'edificio', arena: 0, num: 1, hp: 820, dmg: 72, hit: 0.85, rango: 6.2, vel: 0, obj: 'todo', radio: 1.0, vida: 35,
