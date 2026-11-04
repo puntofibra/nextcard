@@ -8,7 +8,7 @@ var NC = (function () {
   // unidades de distancia = casillas del campo (18 x 32) · vel en casillas/s · hit en segundos
   var CARTAS = [
     { id: 'drones', nom: 'Enjambre Dron', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 3, vuela: 1, hp: 95, dmg: 42, hit: 1.0, rango: 2.2, vel: 1.45, obj: 'todo', radio: 0.45,
-      desc: 'Tres drones voladores rápidos. Perfectos para cazar tropas de tierra que no pueden mirar al cielo.' },
+      img: 'img/tropa-drones.webp', desc: 'Tres drones voladores rápidos. Perfectos para cazar tropas de tierra que no pueden mirar al cielo.' },
     { id: 'cadetes', nom: 'Cadetes Ion', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 3, hp: 330, dmg: 82, hit: 1.1, rango: 0.8, vel: 1.0, obj: 'tierra', radio: 0.5,
       desc: 'Escuadrón de tres robots con porra de iones. Rodean y frenan a cualquier tropa grande.' },
     { id: 'tirador', nom: 'Tirador Láser', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 1, hp: 260, dmg: 92, hit: 1.1, rango: 5.5, vel: 1.0, obj: 'todo', radio: 0.5,

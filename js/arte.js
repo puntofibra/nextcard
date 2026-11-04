@@ -21,7 +21,7 @@ const Arte = (() => {
       if (!im) return; c.width = im.naturalWidth; c.height = im.naturalHeight; const x = c.getContext('2d'); x.drawImage(im, 0, 0);
       try {
         const d = x.getImageData(0, 0, c.width, c.height), p = d.data;
-        for (let k = 0; k < p.length; k += 4) { const r = p[k], g = p[k + 1], b = p[k + 2]; if (g > r + 18 && g > b) { p[k] = g; p[k + 1] = r * 0.55; p[k + 2] = b * 0.7; } }
+        for (let k = 0; k < p.length; k += 4) { const r = p[k], g = p[k + 1], b = p[k + 2]; if (g > r + 18 && g > b) { p[k] = g; p[k + 1] = r * 0.5; p[k + 2] = b * 0.4; } }
         x.putImageData(d, 0, 0);
       } catch (e) {}
       c.listo = true;

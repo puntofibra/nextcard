@@ -640,6 +640,11 @@ const Batalla = (() => {
       if (e.id === 'moto' && enRio(e.y)) cx.translate(0, -S * 0.9 * Math.sin((e.y - RIO0) / (RIO1 - RIO0) * Math.PI));
       if (dir < 0) cx.scale(-1, 1);
       if (e.stun > 0) cx.rotate(Math.sin(t * 40) * 0.05);
+      if (lucas) {   // aura de energía del equipo que late detrás de las tropas ilustradas
+        const pul = 0.22 + Math.sin(t * 4 + e.k) * 0.08, ga = cx.createRadialGradient(0, -tam * 0.45, 0, 0, -tam * 0.45, tam * 0.55);
+        ga.addColorStop(0, col.a + '88'); ga.addColorStop(1, 'rgba(0,0,0,0)');
+        cx.save(); cx.globalCompositeOperation = 'lighter'; cx.globalAlpha = pul * a; cx.fillStyle = ga; cx.beginPath(); cx.arc(0, -tam * 0.45, tam * 0.55, 0, 7); cx.fill(); cx.restore();
+      }
       cx.drawImage(sp, -tam / 2, -tam * 0.92, tam, tam);
       if (e.golpe > 0) { cx.globalCompositeOperation = 'lighter'; cx.globalAlpha = e.golpe * 5; cx.drawImage(sp, -tam / 2, -tam * 0.92, tam, tam); }
       cx.restore();
