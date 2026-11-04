@@ -21,6 +21,17 @@ const Batalla = (() => {
     return { rey: { x: 9, y: f(29) }, izq: { x: 3.5, y: f(26) }, der: { x: 14.5, y: f(26) } };
   }
 
+  // torres ilustradas (img/torre-*.webp): tamaño en casillas, base apoyada en la plataforma
+  const TORRE_IMG = { rey: { w: 1.8, asp: 640 / 425, canon: 0.11 }, lat: { w: 1.55, asp: 640 / 345, canon: 0.11 } };
+  function geoTorre(e) {
+    const g = TORRE_IMG[e.torre === 'rey' ? 'rey' : 'lat'], w = e.r * g.w, h = w * g.asp, bot = e.y + e.r * 0.5;
+    return { w, h, bot, top: bot - h, canon: bot - h * (1 - g.canon) };
+  }
+  function imgTorre(e) {
+    const i = Arte.img('img/torre-' + (e.torre === 'rey' ? 'rey' : 'lateral') + '-' + (e.eq ? 'roja' : 'verde') + '.webp');
+    return i.complete && i.naturalWidth ? i : null;
+  }
+
   /* ---------------- creación ---------------- */
   function nuevaEntidad(o) { o.k = ++B.idc; o.t = 0; o.cd = 0.35; o.golpe = 0; o.slow = 0; o.stun = 0; o.dir = o.eq ? -1 : 1; o.anim = 0; B.ent.push(o); return o; }
   function crearTorres(eq, nivel) {
@@ -45,6 +56,7 @@ const Batalla = (() => {
   }
 
   function iniciar(o) {
+    ['rey', 'lateral'].forEach(n => ['verde', 'roja'].forEach(c => Arte.img('img/torre-' + n + '-' + c + '.webp')));
     opts = o;
     B = { idc: 0, ent: [], proy: [], part: [], zonas: [], textos: [], t: 0, fin: null, prorroga: false, coronas: [0, 0], plasma: [5, 5], temblor: 0, flash: 0,
       mazo: [barajar(o.yo.mazo), barajar(o.rival.mazo)], mano: [[], []], niveles: [{}, {}], nivelRey: [o.yo.nivel, o.rival.nivel], arena: o.arena || 0, cuenta: 3.2, ia: { t: 1.5, empuje: null }, jugadas: 0 };
@@ -210,7 +222,7 @@ const Batalla = (() => {
     if (a.cargado && a.c && a.c.carga) { dmg *= 2; a.cargado = false; textoFlotante(b.x, b.y - 1.6, '¡SUPERSÓNICO!', '#ffe14d', 1); B.temblor = Math.max(B.temblor, 0.35); }
     const id = a.tipo === 'torre' ? 'torre' : a.id;
     if (a.tipo === 'torre') {
-      B.proy.push({ tipo: 'laser', eq: a.eq, x: a.x, y: a.y - (a.torre === 'rey' ? 2.4 : 1.8), tx: b.x, ty: b.y, obj: b, vel: 20, dmg, rastro: [], col: Arte.EQ[a.eq].b, grueso: a.torre === 'rey' ? 1.4 : 1 });
+      B.proy.push({ tipo: 'laser', eq: a.eq, x: a.x, y: geoTorre(a).canon, tx: b.x, ty: b.y, obj: b, vel: 20, dmg, rastro: [], col: Arte.EQ[a.eq].b, grueso: a.torre === 'rey' ? 1.4 : 1 });
       Son.laser(a.torre !== 'rey');
       return;
     }
@@ -528,6 +540,8 @@ const Batalla = (() => {
       cx.strokeStyle = col.a + '55'; cx.lineWidth = 2 * dpr; cx.beginPath(); cx.arc(px, py, r * 0.8, 0, 7); cx.stroke();
       return;
     }
+    const ti = imgTorre(e);
+    if (ti) { dibujaTorreImg(e, t, ti); return; }
     const alto = r * (rey ? 1.15 : 1.05);
     cx.fillStyle = 'rgba(0,0,0,.5)'; cx.beginPath(); cx.ellipse(px, py + r * 0.45, r * 1.15, r * 0.55, 0, 0, 7); cx.fill();
     // base hexagonal
@@ -573,6 +587,27 @@ const Batalla = (() => {
       cx.font = `700 ${Math.round(bh * 0.95)}px Rajdhani, sans-serif`; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillStyle = '#fff'; cx.fillText(Math.ceil(e.hp), px, by + bh / 2 + 1);
     }
     if (rey && !e.activa) { cx.font = `700 ${Math.round(S * 0.45)}px Orbitron, sans-serif`; cx.textAlign = 'center'; cx.fillStyle = 'rgba(255,255,255,.55)'; cx.fillText('z z z', px + r * 0.9, py - alto - r * 1.2 + Math.sin(t * 2) * 3); }
+  }
+  function dibujaTorreImg(e, t, ti) {
+    const eq = e.eq, px = X(e.x), py = Y(e.y), r = e.r * S, rey = e.torre === 'rey', g = geoTorre(e);
+    const w = g.w * S, h = g.h * S, x0 = px - w / 2, y0 = Y(g.top);
+    // sombra en el suelo
+    cx.fillStyle = 'rgba(0,0,0,.5)'; cx.beginPath(); cx.ellipse(px, py + r * 0.38, r * 1.1, r * 0.45, 0, 0, 7); cx.fill();
+    // retroceso al disparar
+    const k = e.anim > 0 ? Math.sin(e.anim / 0.25 * Math.PI) * S * 0.06 : 0;
+    cx.save(); if (rey && !e.activa) cx.globalAlpha = 0.9;
+    cx.drawImage(ti, x0, y0 + k, w, h);
+    if (e.golpe > 0) { cx.globalCompositeOperation = 'lighter'; cx.globalAlpha = Math.min(1, e.golpe * 4) * 0.6; cx.drawImage(ti, x0, y0 + k, w, h); }
+    cx.restore();
+    // vida
+    const bw = r * (rey ? 2.4 : 2), bh = Math.max(6 * dpr, S * 0.32), bx = px - bw / 2, by = rey ? py + r * 0.75 : y0 - bh - S * 0.25;
+    if (!(rey && !e.activa && e.hp === e.max)) {
+      cx.fillStyle = 'rgba(0,0,0,.7)'; rrC(cx, bx - 2, by - 2, bw + 4, bh + 4, 4 * dpr); cx.fill();
+      const f = e.hp / e.max; cx.fillStyle = eq ? (f < 0.3 ? '#ff2244' : '#ff4d6d') : (f < 0.3 ? '#ffcc00' : '#19ff6a'); rrC(cx, bx, by, Math.max(2, bw * f), bh, 3 * dpr); cx.fill();
+      cx.fillStyle = 'rgba(255,255,255,.35)'; cx.fillRect(bx, by, bw * f, bh * 0.35);
+      cx.font = `700 ${Math.round(bh * 0.95)}px Rajdhani, sans-serif`; cx.textAlign = 'center'; cx.textBaseline = 'middle'; cx.fillStyle = '#fff'; cx.fillText(Math.ceil(e.hp), px, by + bh / 2 + 1);
+    }
+    if (rey && !e.activa) { cx.font = `700 ${Math.round(S * 0.45)}px Orbitron, sans-serif`; cx.textAlign = 'center'; cx.fillStyle = 'rgba(255,255,255,.6)'; cx.fillText('z z z', px + w * 0.45, y0 + h * 0.3 + Math.sin(t * 2) * 3); }
   }
   function dibujaUnidad(e, t) {
     const col = Arte.EQ[e.eq], px = X(e.x), py = Y(e.y), alto = e.vuela ? S * 1.3 + Math.sin(t * 3 + e.k) * S * 0.12 : 0;

@@ -653,8 +653,8 @@ VISTAS.guia = () => {
   const sec = (ic, tit, html, cls) => `<section class="gSec ${cls || ''}"><div class="gIc">${ic}</div><div><h3>${tit}</h3>${html}</div></section>`;
   $('#app').innerHTML = `<div class="guia">
     <div class="gHero"><img src="img/lucas/ayuda.webp" alt=""><div><small>MANUAL DEL COMANDANTE</small><h2>Cómo se juega</h2><p>Todo lo que necesitas para conquistar la galaxia en 2 minutos de lectura.</p></div></div>
-    ${sec('🎯', 'El objetivo', `<p>Cada batalla dura <b>3 minutos</b>. Tú defiendes la parte de <b style="color:#19ff6a">abajo</b> y el rival la de <b style="color:#ff4d6d">arriba</b>. Cada uno tiene <b>2 torres de escudo</b> y una <b>nave nodriza</b> con Lucas encima.</p>
-      <div class="gTorres"><div><i class="tIc">🛡</i><b>Torre destruida</b><span>= 1 corona</span></div><div><i class="tIc">👑</i><b>Nave nodriza</b><span>= 3 coronas y victoria</span></div></div>
+    ${sec('🎯', 'El objetivo', `<p>Cada batalla dura <b>3 minutos</b>. Tú defiendes la parte de <b style="color:#19ff6a">abajo</b> y el rival la de <b style="color:#ff4d6d">arriba</b>. Cada uno tiene <b>2 torres laterales</b> y una <b>torre del rey</b> en el centro.</p>
+      <div class="gTorres"><div><i class="tIc">🛡</i><b>Torre destruida</b><span>= 1 corona</span></div><div><i class="tIc">👑</i><b>Torre del rey</b><span>= 3 coronas y victoria</span></div></div>
       <p>Gana quien tenga <b>más coronas</b> al acabar. Si hay empate, hay <b>1 minuto de prórroga</b>: la primera corona gana.</p>`)}
     ${sec(IC.plasma, 'El plasma', `<p>Las cartas cuestan <b>plasma</b> (el número morado). Empiezas con 5 y se recarga solo hasta 10. En el <b>último minuto</b> y en la prórroga se recarga <b>el doble de rápido</b>.</p><div class="gBarra"><i></i><span>5 / 10</span></div><p class="nota">Truco: no dejes que la barra se quede llena, ¡estás desperdiciando plasma!</p>`)}
     ${sec('🃏', 'Tus cartas', `<p>Llevas un <b>mazo de 8 cartas</b>. En la batalla tienes <b>4 en la mano</b>; cuando juegas una, entra la siguiente. <b>Arrástrala al campo</b> (o tócala y luego toca el campo).</p>
@@ -672,7 +672,7 @@ VISTAS.guia = () => {
     ${sec(IC.trofeo, 'Trofeos y galaxias', `<p>Ganar da unos <b>+30 trofeos</b>; perder los quita. Con trofeos viajas a nuevas <b>galaxias</b>, y cada una desbloquea cartas nuevas en las cápsulas:</p>
       <div class="gArenas">${NC.ARENAS.map((a, i) => `<div style="--ac:${a.col}"><span class="planeta mini p${i}"><i></i></span><b>${a.nom}</b><small>${IC.trofeo} ${a.min}</small></div>`).join('')}</div>`)}
     ${sec('✦', 'Pase Nova', `<p>El pase premium de 30 días: abre <b>2 cápsulas a la vez</b>, cápsulas <b>30% más rápidas</b>, <b>+50% de créditos</b> por victoria y marco dorado en el ranking.</p>`)}
-    ${sec('💡', 'Consejos de Lucas', `<ul class="tips"><li>Defiende en tu lado y contraataca con lo que sobreviva: es la forma más barata de ganar.</li><li>El <b>Pulso EMP</b> paraliza: úsalo cuando el rival lance su tropa más fuerte.</li><li>El <b>Agujero Negro</b> junta a las tropas: combínalo con un <b>Misil Nova</b>.</li><li>La nave nodriza se activa si la tocas: ¡no la despiertes antes de tiempo!</li><li>Pon la <b>Torreta Pulsar</b> en el centro para desviar a los tanques.</li></ul>`)}
+    ${sec('💡', 'Consejos de Lucas', `<ul class="tips"><li>Defiende en tu lado y contraataca con lo que sobreviva: es la forma más barata de ganar.</li><li>El <b>Pulso EMP</b> paraliza: úsalo cuando el rival lance su tropa más fuerte.</li><li>El <b>Agujero Negro</b> junta a las tropas: combínalo con un <b>Misil Nova</b>.</li><li>La torre del rey se activa si la tocas: ¡no la despiertes antes de tiempo!</li><li>Pon la <b>Torreta Pulsar</b> en el centro para desviar a los tanques.</li></ul>`)}
     <div class="centro"><button class="btn verde grande" onclick="ir('inicio')">¡A LA BATALLA!</button></div>
   </div>`;
 };
