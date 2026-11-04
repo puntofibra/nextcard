@@ -18,7 +18,7 @@ var NC = (function () {
     { id: 'torreta', nom: 'Torreta Pulsar', rar: 'c', coste: 4, tipo: 'edificio', arena: 0, num: 1, hp: 820, dmg: 72, hit: 0.85, rango: 6.2, vel: 0, obj: 'todo', radio: 1.0, vida: 35,
       desc: 'Defensa que se planta en tu lado y atrae a las tropas que van a por edificios. Dura 35 s.' },
     { id: 'tanque', nom: 'Tanque Orbital', rar: 'r', coste: 5, tipo: 'tropa', arena: 0, num: 1, hp: 2700, dmg: 165, hit: 1.5, rango: 1.2, vel: 0.72, obj: 'edificios', radio: 0.95,
-      desc: 'Una mole blindada que solo ataca estructuras. Ponle apoyo detrás y arrasará torres.' },
+      img: 'img/tropa-tanque.webp', desc: 'Una mole blindada que solo ataca estructuras. Ponle apoyo detrás y arrasará torres.' },
     { id: 'misil', nom: 'Misil Nova', rar: 'r', coste: 4, tipo: 'hechizo', arena: 0, radioArea: 2.5, dmg: 540, torre: 0.4, empuje: 1.2,
       desc: 'Un misil desde tu nave nodriza. Gran daño en área y empuja hacia atrás a las tropas.' },
     { id: 'mecha', nom: 'Mecha Cuchilla', rar: 'r', coste: 4, tipo: 'tropa', arena: 0, num: 1, hp: 1150, dmg: 500, hit: 1.8, rango: 0.9, vel: 1.4, obj: 'tierra', radio: 0.7,
