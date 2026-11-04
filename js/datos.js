@@ -24,7 +24,7 @@ var NC = (function () {
     { id: 'mecha', nom: 'Mecha Cuchilla', rar: 'r', coste: 4, tipo: 'tropa', arena: 0, num: 1, hp: 1150, dmg: 500, hit: 1.8, rango: 0.9, vel: 1.4, obj: 'tierra', radio: 0.7,
       img: 'img/tropa-mecha.webp', desc: 'Rápido y brutal: cada tajo de su hoja de plasma destroza tanques y torres.' },
     { id: 'moto', nom: 'Moto Cuántica', rar: 'r', coste: 4, tipo: 'tropa', arena: 1, num: 1, hp: 1100, dmg: 215, hit: 1.6, rango: 0.9, vel: 2.0, obj: 'edificios', radio: 0.7, salta: 1,
-      desc: 'Va directa a por los edificios a toda velocidad y salta la grieta de plasma sin usar los puentes.' },
+      img: 'img/tropa-moto.webp', desc: 'Va directa a por los edificios a toda velocidad y salta la grieta de plasma sin usar los puentes.' },
     { id: 'emp', nom: 'Pulso EMP', rar: 'c', coste: 2, tipo: 'hechizo', arena: 1, radioArea: 2.6, dmg: 85, torre: 0.4, aturde: 0.8,
       desc: 'Descarga electromagnética instantánea: daña y deja paralizado todo lo que toca.' },
     { id: 'dragon', nom: 'Dragón Estelar', rar: 'e', coste: 4, tipo: 'tropa', arena: 1, num: 1, vuela: 1, hp: 820, dmg: 115, hit: 1.6, rango: 3.5, vel: 1.4, obj: 'todo', radio: 0.85, area: 1.3,
