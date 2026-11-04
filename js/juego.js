@@ -704,3 +704,28 @@ if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catc
 if (SES) { pintaTop(); ir(load('vista', 'inicio') === 'login' ? 'inicio' : load('vista', 'inicio'), true); refrescar(); }
 else ir('login', true);
 setInterval(() => { if (SES && !Batalla.activa && document.visibilityState === 'visible') refrescar(); }, 90000);
+
+/* ---- actualización automática: si hay una versión nueva, se recarga sola cuando no estás en batalla ---- */
+const VERSION = 5;   // subir este número (y version.json) en cada actualización
+let nuevaVersion = 0, actualizando = false, ultVer = 0;
+function compruebaVersion(forzar) {
+  if (actualizando || (!forzar && Date.now() - ultVer < 30000)) return; ultVer = Date.now();
+  fetch('version.json?n=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null)
+    .then(d => { if (d && Number(d.v) > VERSION) { nuevaVersion = Number(d.v); intentaActualizar(); } }).catch(() => {});
+}
+function libreParaActualizar() {
+  return !Batalla.activa && ['#batalla', '#busqueda', '#apertura', '#modal'].every(s => { const el = $(s); return !el || el.classList.contains('oculto'); });
+}
+function intentaActualizar() {
+  if (!nuevaVersion || actualizando || !libreParaActualizar()) return;
+  actualizando = true;
+  const ov = document.createElement('div'); ov.className = 'actualiza'; ov.innerHTML = '<div class="aRueda"></div><b>ACTUALIZANDO</b><small>Nueva versión de NEXTCARD</small>'; document.body.appendChild(ov);
+  (async () => {
+    try { const reg = navigator.serviceWorker && await navigator.serviceWorker.getRegistration(); if (reg) await reg.update(); } catch (e) {}
+    try { const ks = await caches.keys(); await Promise.all(ks.map(k => caches.delete(k))); } catch (e) {}
+  })().finally(() => setTimeout(() => location.reload(), 1400));
+}
+setTimeout(() => compruebaVersion(true), 4000);
+setInterval(() => compruebaVersion(true), 120000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') compruebaVersion(); });
+setInterval(intentaActualizar, 3000);   // si llega durante una batalla, se aplica al salir
