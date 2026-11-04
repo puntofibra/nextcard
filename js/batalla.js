@@ -22,7 +22,7 @@ const Batalla = (() => {
   }
 
   // torres ilustradas (img/torre-*.webp): tamaño en casillas, base apoyada en la plataforma
-  const TORRE_IMG = { rey: { w: 1.8, asp: 640 / 425, canon: 0.11 }, lat: { w: 1.55, asp: 640 / 345, canon: 0.11 } };
+  const TORRE_IMG = { rey: { w: 1.62, asp: 640 / 425, canon: 0.11 }, lat: { w: 1.55, asp: 640 / 345, canon: 0.11 } };
   function geoTorre(e) {
     const g = TORRE_IMG[e.torre === 'rey' ? 'rey' : 'lat'], w = e.r * g.w, h = w * g.asp, bot = e.y + e.r * 0.5;
     return { w, h, bot, top: bot - h, canon: bot - h * (1 - g.canon) };
@@ -56,7 +56,7 @@ const Batalla = (() => {
   }
 
   function iniciar(o) {
-    ['rey', 'lateral'].forEach(n => ['verde', 'roja'].forEach(c => Arte.img('img/torre-' + n + '-' + c + '.webp')));
+    ['rey', 'lateral'].forEach(n => ['verde', 'roja'].forEach(c => Arte.img('img/torre-' + n + '-' + c + '.webp'))); Arte.img('img/lucas/espalda.webp'); Arte.rojo('img/lucas/vuela.webp');
     opts = o;
     B = { idc: 0, ent: [], proy: [], part: [], zonas: [], textos: [], t: 0, fin: null, prorroga: false, coronas: [0, 0], plasma: [5, 5], temblor: 0, flash: 0,
       mazo: [barajar(o.yo.mazo), barajar(o.rival.mazo)], mano: [[], []], niveles: [{}, {}], nivelRey: [o.yo.nivel, o.rival.nivel], arena: o.arena || 0, cuenta: 3.2, ia: { t: 1.5, empuje: null }, jugadas: 0 };
@@ -588,6 +588,17 @@ const Batalla = (() => {
     }
     if (rey && !e.activa) { cx.font = `700 ${Math.round(S * 0.45)}px Orbitron, sans-serif`; cx.textAlign = 'center'; cx.fillStyle = 'rgba(255,255,255,.55)'; cx.fillText('z z z', px + r * 0.9, py - alto - r * 1.2 + Math.sin(t * 2) * 3); }
   }
+  // Lucas flotando sobre la torre del rey: de espaldas en tu torre (si existe la imagen) y en rojo de frente en la del rival
+  function dibujaLucasRey(e, t, px, yTop, r) {
+    const eq = e.eq, esp = Arte.img('img/lucas/espalda.webp'), espOk = !eq && esp.complete && esp.naturalWidth;
+    const lu = espOk ? esp : eq ? Arte.rojo('img/lucas/vuela.webp') : Arte.img('img/lucas/vuela.webp');
+    const lw = lu.naturalWidth || lu.width, lh = lu.naturalHeight || lu.height;
+    if (!lw || (eq && !lu.listo)) return;
+    const h = r * 1.15, w = h * lw / lh, flota = Math.sin(t * 2.2 + eq) * r * 0.08;
+    cx.save(); if (!e.activa) cx.globalAlpha = 0.9;
+    if (eq) { cx.translate(px, 0); cx.scale(-1, 1); cx.translate(-px, 0); }
+    cx.drawImage(lu, px - w / 2, yTop - h * 0.6 + flota, w, h); cx.restore();
+  }
   function dibujaTorreImg(e, t, ti) {
     const eq = e.eq, px = X(e.x), py = Y(e.y), r = e.r * S, rey = e.torre === 'rey', g = geoTorre(e);
     const w = g.w * S, h = g.h * S, x0 = px - w / 2, y0 = Y(g.top);
@@ -599,6 +610,7 @@ const Batalla = (() => {
     cx.drawImage(ti, x0, y0 + k, w, h);
     if (e.golpe > 0) { cx.globalCompositeOperation = 'lighter'; cx.globalAlpha = Math.min(1, e.golpe * 4) * 0.6; cx.drawImage(ti, x0, y0 + k, w, h); }
     cx.restore();
+    if (rey) dibujaLucasRey(e, t, px, y0, r);
     // vida
     const bw = r * (rey ? 2.4 : 2), bh = Math.max(6 * dpr, S * 0.32), bx = px - bw / 2, by = rey ? py + r * 0.75 : y0 - bh - S * 0.25;
     if (!(rey && !e.activa && e.hp === e.max)) {
