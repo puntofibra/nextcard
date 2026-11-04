@@ -22,7 +22,7 @@ var NC = (function () {
     { id: 'misil', nom: 'Misil Nova', rar: 'r', coste: 4, tipo: 'hechizo', arena: 0, radioArea: 2.5, dmg: 540, torre: 0.4, empuje: 1.2,
       desc: 'Un misil desde tu nave nodriza. Gran daño en área y empuja hacia atrás a las tropas.' },
     { id: 'mecha', nom: 'Mecha Cuchilla', rar: 'r', coste: 4, tipo: 'tropa', arena: 0, num: 1, hp: 1150, dmg: 500, hit: 1.8, rango: 0.9, vel: 1.4, obj: 'tierra', radio: 0.7,
-      desc: 'Rápido y brutal: cada tajo de su hoja de plasma destroza tanques y torres.' },
+      img: 'img/tropa-mecha.webp', desc: 'Rápido y brutal: cada tajo de su hoja de plasma destroza tanques y torres.' },
     { id: 'moto', nom: 'Moto Cuántica', rar: 'r', coste: 4, tipo: 'tropa', arena: 1, num: 1, hp: 1100, dmg: 215, hit: 1.6, rango: 0.9, vel: 2.0, obj: 'edificios', radio: 0.7, salta: 1,
       desc: 'Va directa a por los edificios a toda velocidad y salta la grieta de plasma sin usar los puentes.' },
     { id: 'emp', nom: 'Pulso EMP', rar: 'c', coste: 2, tipo: 'hechizo', arena: 1, radioArea: 2.6, dmg: 85, torre: 0.4, aturde: 0.8,
