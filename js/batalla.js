@@ -629,8 +629,19 @@ const Batalla = (() => {
     // aro del equipo
     cx.strokeStyle = col.a; cx.globalAlpha = 0.5; cx.lineWidth = 1.5 * dpr; cx.beginPath(); cx.ellipse(px, py + S * 0.15, e.r * S * 0.9, e.r * S * 0.38, 0, 0, 7); cx.stroke(); cx.globalAlpha = 1;
     let a = 1; if (e.desp > 0) a = clamp(1 - e.desp, 0.15, 1);
-    if (e.tipo === 'edificio') {
+    const spE = e.tipo === 'edificio' && e.c && e.c.img ? Arte.sprite(e.id, e.eq) : null;
+    if (e.tipo === 'edificio' && !(spE && spE.listo)) {
       cx.save(); cx.globalAlpha = a; const s = tam / 100 * 1.2; cx.translate(px - 50 * s, py - 72 * s); cx.scale(s, s); Arte.dibujaTorreta(cx, e.eq, e.ang); cx.restore();
+    } else if (e.tipo === 'edificio') {
+      // torreta ilustrada: mira hacia donde apunta y retrocede al disparar
+      const tw = tam * 1.25, k = e.anim > 0 ? Math.sin(e.anim / 0.25 * Math.PI) * S * 0.08 : 0, izq = Math.cos(e.ang || 0) < 0;
+      cx.save(); cx.globalAlpha = a; cx.translate(px - (izq ? -k : k), py);
+      const ga = cx.createRadialGradient(0, -tw * 0.1, 0, 0, -tw * 0.1, tw * 0.5); ga.addColorStop(0, col.a + '66'); ga.addColorStop(1, 'rgba(0,0,0,0)');
+      cx.save(); cx.globalCompositeOperation = 'lighter'; cx.globalAlpha = a * (0.25 + Math.sin(t * 4 + e.k) * 0.08); cx.fillStyle = ga; cx.beginPath(); cx.arc(0, -tw * 0.1, tw * 0.5, 0, 7); cx.fill(); cx.restore();
+      if (izq) cx.scale(-1, 1);
+      cx.drawImage(spE, -tw / 2, -tw * 0.78, tw, tw);
+      if (e.golpe > 0) { cx.globalCompositeOperation = 'lighter'; cx.globalAlpha = e.golpe * 5; cx.drawImage(spE, -tw / 2, -tw * 0.78, tw, tw); }
+      cx.restore();
     } else {
       const sp = Arte.sprite(e.id, e.eq);
       const bob = e.andando ? Math.abs(Math.sin(t * 9 + e.k)) * S * 0.12 : 0, ataque = e.anim > 0 ? Math.sin(e.anim / 0.25 * Math.PI) : 0;

@@ -113,7 +113,7 @@ const Son = (() => {
     laser(agudo) { if (!limita('l' + (agudo ? 1 : 0), 70)) return; tono(agudo ? 2400 : 1500, 0.12, 'square', 0.025, 0.25); tono(agudo ? 1200 : 700, 0.1, 'sawtooth', 0.02, 0.3); },
     blaster() { if (!limita('bl', 90)) return; tono(900, 0.16, 'sawtooth', 0.035, 0.2); ruido(0.08, 0.06, 6000, 1500); },
     corte() { if (!limita('co', 80)) return; ruido(0.16, 0.18, 1200, 7000, 0, 'bandpass'); tono(300, 0.12, 'sawtooth', 0.06, 0.4); },
-    golpeMetal() { if (!limita('gm', 60)) return; golpe(ac.currentTime, 0.08, 0.15, 'bandpass', 2600, master, 4); tono(170, 0.1, 'sine', 0.12, 0.6); },
+    golpeMetal() { if (!ac || !limita('gm', 60)) return; golpe(ac.currentTime, 0.08, 0.15, 'bandpass', 2600, master, 4); tono(170, 0.1, 'sine', 0.12, 0.6); },
     impacto(f) { if (!limita('im', 50)) return; ruido(0.18, 0.18 * (f || 1), 2500, 200); tono(120, 0.15, 'sine', 0.2 * (f || 1), 0.5); },
     explosion(f) { if (!ac || !limita('ex', 70)) return; f = f || 1; ruido(0.7 * f, 0.5 * Math.min(1.4, f), 3500, 60); tono(70, 0.6 * f, 'sine', 0.5, 0.35); bombo(ac.currentTime, master, 0.8); },
     fuego() { if (!limita('fu', 120)) return; ruido(0.35, 0.18, 900, 3800); tono(200, 0.3, 'sawtooth', 0.04, 0.5); },

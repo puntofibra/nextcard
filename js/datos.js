@@ -16,7 +16,7 @@ var NC = (function () {
     { id: 'meteoro', nom: 'Lluvia de Meteoritos', rar: 'c', coste: 2, tipo: 'hechizo', arena: 0, radioArea: 3.2, dmg: 150, torre: 0.4,
       desc: 'Una lluvia de rocas espaciales que barre enjambres y tropas débiles en una zona grande.' },
     { id: 'torreta', nom: 'Torreta Pulsar', rar: 'c', coste: 4, tipo: 'edificio', arena: 0, num: 1, hp: 820, dmg: 72, hit: 0.85, rango: 6.2, vel: 0, obj: 'todo', radio: 1.0, vida: 35,
-      desc: 'Defensa que se planta en tu lado y atrae a las tropas que van a por edificios. Dura 35 s.' },
+      img: 'img/tropa-torreta.webp', desc: 'Defensa que se planta en tu lado y atrae a las tropas que van a por edificios. Dura 35 s.' },
     { id: 'tanque', nom: 'Tanque Orbital', rar: 'r', coste: 5, tipo: 'tropa', arena: 0, num: 1, hp: 2700, dmg: 165, hit: 1.5, rango: 1.2, vel: 0.72, obj: 'edificios', radio: 0.95,
       img: 'img/tropa-tanque.webp', desc: 'Una mole blindada que solo ataca estructuras. Ponle apoyo detrás y arrasará torres.' },
     { id: 'misil', nom: 'Misil Nova', rar: 'r', coste: 4, tipo: 'hechizo', arena: 0, radioArea: 2.5, dmg: 540, torre: 0.4, empuje: 1.2,
