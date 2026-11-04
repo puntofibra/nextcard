@@ -10,7 +10,7 @@ var NC = (function () {
     { id: 'drones', nom: 'Enjambre Dron', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 3, vuela: 1, hp: 95, dmg: 42, hit: 1.0, rango: 2.2, vel: 1.45, obj: 'todo', radio: 0.45,
       img: 'img/tropa-drones.webp', desc: 'Tres drones voladores rápidos. Perfectos para cazar tropas de tierra que no pueden mirar al cielo.' },
     { id: 'cadetes', nom: 'Cadetes Ion', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 3, hp: 330, dmg: 82, hit: 1.1, rango: 0.8, vel: 1.0, obj: 'tierra', radio: 0.5,
-      desc: 'Escuadrón de tres robots con porra de iones. Rodean y frenan a cualquier tropa grande.' },
+      img: 'img/tropa-cadetes.webp', desc: 'Escuadrón de tres robots con porra de iones. Rodean y frenan a cualquier tropa grande.' },
     { id: 'tirador', nom: 'Tirador Láser', rar: 'c', coste: 3, tipo: 'tropa', arena: 0, num: 1, hp: 260, dmg: 92, hit: 1.1, rango: 5.5, vel: 1.0, obj: 'todo', radio: 0.5,
       desc: 'Francotirador de largo alcance. Dispara a tierra y aire desde detrás de tus tanques.' },
     { id: 'meteoro', nom: 'Lluvia de Meteoritos', rar: 'c', coste: 2, tipo: 'hechizo', arena: 0, radioArea: 3.2, dmg: 150, torre: 0.4,
@@ -42,7 +42,7 @@ var NC = (function () {
   ];
   var MAPA = {}; CARTAS.forEach(function (c) { MAPA[c.id] = c; });
   // tropa invocada (no es carta)
-  var CADETE = { id: 'cadete', nom: 'Cadete Ion', rar: 'c', tipo: 'tropa', num: 1, hp: 330, dmg: 82, hit: 1.1, rango: 0.8, vel: 1.0, obj: 'tierra', radio: 0.5 };
+  var CADETE = { id: 'cadete', nom: 'Cadete Ion', img: 'img/tropa-cadetes.webp', rar: 'c', tipo: 'tropa', num: 1, hp: 330, dmg: 82, hit: 1.1, rango: 0.8, vel: 1.0, obj: 'tierra', radio: 0.5 };
 
   var RAREZAS = {
     c: { nom: 'Común', col: '#9fd3ff', mul: 1 },
