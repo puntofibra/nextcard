@@ -3,7 +3,7 @@
    ========================================================= */
 'use strict';
 const CFG = {
-  API: '',   // URL /exec de Apps Script (se pone al implementar)
+  API: 'https://script.google.com/macros/s/AKfycbw8_-zlUqms9IkTRSt4FqkoPs5JONrjLMhK3rdc1JOd3CsmPSW19rqQMuLDlPCKj4s/exec',
   GOOGLE: '454055120059-nuhaop4r62urc3u036cc3grpqo71ulg7.apps.googleusercontent.com',
   URL: 'https://puntofibra.github.io/nextcard/',
   WHATSAPP: '34633200100'
